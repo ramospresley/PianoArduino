@@ -15,7 +15,7 @@ O buzzer foi configurado para emitir áudio limpo, sem ruído, e todo o código 
 
 ---
 
-## 🎵 Funcionalidades
+## Funcionalidades
 
 - 9 notas musicais (Dó a Ré da oitava superior).  
 - LEDs que indicam visualmente a nota acionada.  
@@ -26,7 +26,7 @@ O buzzer foi configurado para emitir áudio limpo, sem ruído, e todo o código 
 
 ---
 
-## 📁 Estrutura do Projeto
+## Estrutura do Projeto
 
 /piano-arduino
 │
@@ -43,7 +43,7 @@ O buzzer foi configurado para emitir áudio limpo, sem ruído, e todo o código 
 
 ---
 
-## 🔧 Hardware Utilizado
+## Hardware Utilizado
 
 - **Arduino UNO**
 - 9 Botões (push-buttons)
@@ -54,7 +54,7 @@ O buzzer foi configurado para emitir áudio limpo, sem ruído, e todo o código 
 
 ---
 
-## ▶️ Como Testar no Tinkercad
+## Como Testar no Tinkercad
 
 1. Crie um novo circuito.  
 2. Monte a estrutura com os pinos conforme especificado no código.  
@@ -63,14 +63,14 @@ O buzzer foi configurado para emitir áudio limpo, sem ruído, e todo o código 
 
 ---
 
-## 📜 Licença
+## Licença
 
 Este projeto está disponível sob a licença MIT.  
 Consulte o arquivo `LICENSE` para mais detalhes.
 
 ---
 
-## 🔗 Repositório Oficial
+## Repositório Oficial
 
 O projeto completo pode ser encontrado em:
 
@@ -78,7 +78,7 @@ O projeto completo pode ser encontrado em:
 
 ---
 
-## 💡 Autor
+## Autor
 
 Desenvolvido por **Elvis Presley Ramos Miranda da Conceição**  
 Técnico em Desenvolvimento de Sistemas – ETEC MLK (2025)
@@ -86,3 +86,4 @@ Técnico em Desenvolvimento de Sistemas – ETEC MLK (2025)
 ---
 "# financecontrol" 
 "# financecontrol" 
+"# PianoArduino" 
