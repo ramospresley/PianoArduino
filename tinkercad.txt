@@ -1,0 +1,111 @@
+// -------------------------------------------------
+// NOTAS MUSICAIS (9 notas)
+// -------------------------------------------------
+const int notas[] = {
+  262, // Do
+  294, // Re
+  330, // Mi
+  349, // Fa
+  392, // Sol
+  440, // La
+  494, // Si
+  523, // Do (8ª acima)
+  587  // Re (8ª acima)
+};
+
+const int numKeys = 9;
+
+// -------------------------------------------------
+// PINOS — TODOS CORRIGIDOS
+// -------------------------------------------------
+// Pino do buzzer
+const int buzzerPin = 8;
+
+// Botões físicos (9 botões)
+const int buttonPins[numKeys] = {2, 3, 4, 5, 6, 7, 9, 10, 12};
+
+// LEDs (9 LEDs) — sem duplicação com botões
+const int ledPins[numKeys] = {11, 13, A0, A1, A2, A3, A4, A5, A6};
+
+// -------------------------------------------------
+// TECLAS DO PC E NUMÉRICAS
+// -------------------------------------------------
+char teclasPC[numKeys]  = {'A','S','D','F','G','H','J','K','L'};
+char teclasNum[numKeys] = {'1','2','3','4','5','6','7','8','9'};
+
+// -------------------------------------------------
+// SETUP
+// -------------------------------------------------
+void setup() {
+  Serial.begin(9600);
+
+  pinMode(buzzerPin, OUTPUT);
+
+  for (int i = 0; i < numKeys; i++) {
+    pinMode(buttonPins[i], INPUT);      // botões com resistor externo
+    pinMode(ledPins[i], OUTPUT);
+    digitalWrite(ledPins[i], LOW);
+  }
+}
+
+// -------------------------------------------------
+// LOOP PRINCIPAL
+// -------------------------------------------------
+void loop() {
+
+  bool tocou = false;
+
+  // -----------------------------------------
+  // LEITURA DOS BOTÕES FÍSICOS
+  // -----------------------------------------
+  for (int i = 0; i < numKeys; i++) {
+    if (digitalRead(buttonPins[i]) == HIGH) {
+      tone(buzzerPin, notas[i]);
+      digitalWrite(ledPins[i], HIGH);
+      tocou = true;
+    } else {
+      digitalWrite(ledPins[i], LOW);
+    }
+  }
+
+  // -----------------------------------------
+  // LEITURA DO TECLADO (MONITOR SERIAL)
+  // -----------------------------------------
+  if (Serial.available() > 0) {
+    char tecla = Serial.read();
+
+    // Letras A–L
+    for (int i = 0; i < numKeys; i++) {
+      if (tecla == teclasPC[i] || tecla == teclasPC[i] + 32) {
+        acionaNota(i);
+        tocou = true;
+      }
+    }
+
+    // Números 1–9
+    for (int i = 0; i < numKeys; i++) {
+      if (tecla == teclasNum[i]) {
+        acionaNota(i);
+        tocou = true;
+      }
+    }
+  }
+
+  // -----------------------------------------
+  // Nenhuma nota pressionada
+  // -----------------------------------------
+  if (!tocou) {
+    noTone(buzzerPin);
+  }
+}
+
+// -------------------------------------------------
+// FUNÇÃO ACIONA NOTA PARA TECLADO
+// -------------------------------------------------
+void acionaNota(int index) {
+  tone(buzzerPin, notas[index]);
+  digitalWrite(ledPins[index], HIGH);
+  delay(150);
+  digitalWrite(ledPins[index], LOW);
+  noTone(buzzerPin);
+}
